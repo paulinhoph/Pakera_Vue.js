@@ -10,11 +10,11 @@
 			<button class="placar-Itens" v-on:click="mandouSuperBem">Pagar combo cínema</button>
 			<button class="placar-Itens" v-on:click="muitoMal">Brigar em publico</button>
 			<button class="placar-Itens" v-on:click="mandouMuitoMal">Agressão</button>
-			<button class="placar-Itens" v-on:click="MandouSuperMal">Traição</button>
+			<button class="placar-Itens" v-on:click="mandouSuperMal">Traição</button>
 		</main>
 		<footer>
-		<button class="placar-Itens2" v-on:click="zerar">x</button>
-			<h2>Sua Pontuação é {{ pontos }}</h2>
+			<button class="placar-Itens2" v-on:click="resultados">Mostrar Resultado</button>
+			<h2>{{ resultado }}</h2>
 		</footer>
 	</div>
 </template>
@@ -23,33 +23,42 @@
 		name: 'Pakera',
 		data(){
 			return{
-				pontos: 0
+				pontos: 0,
+				resultado: ''
 			}
 		},
 		methods:{
 			bom(){
-				this.pontos  += +5
+				return this.pontos  += +5
 			},
 			muitoBom(){
-				this.pontos  += +10
+				return this.pontos  += +10
 			},
 			mandouSuperBem(){
-				this.pontos  += +15
+				return this.pontos  += +15
 			},
 			mal(){
-				this.pontos  += -5
+				return this.pontos  += -5
 			},
 			muitoMal(){
-				this.pontos  += -10 
+				return this.pontos  += -10 
 			},
 			mandouMuitoMal(){
-				this.pontos  += -15 
+				return this.pontos  += -15 
 			},
-			MandouSuperMal(){
-				this.pontos  += -20
+			mandouSuperMal(){
+				return this.pontos  += -20
 			},
-			zerar(){
-				this.pontos  = 0
+			resultados(){
+				if (this.pontos <= 10){
+					return this.resultado = 'Sai Embuste!'
+				} 
+				else if (this.pontos > 10 && this.pontos <= 20) {
+					return this.resultado = 'Mas ou Menos!'
+				}
+				else {
+					return this.resultado = 'Muito Topzera!'
+				} 
 			}
 		}
 	}
@@ -89,22 +98,21 @@
 	footer{
 		position: relative;
 		display: flex;
-		justify-content: center;
-		align-items: flex-end;
-		background-color: 		#FF6347;
-		padding: 10%;
+		justify-content:center;
+		align-items: center;
+		flex-direction: column;
+		background-color: #FF6347;
+		padding: 7%;
+
 	}
 	.placar-Itens2{
-		width: 7%;
-		height: 4vh;
-		left: 10%;
-		top: 39%;
-		border-radius: 60%;
-		position: absolute;
+		width: 30%;
+		height: 50px;
 		text-transform: uppercase;
 		font-weight: 900;
+
 	}
 	h2{
-		background-color: 		#FF6347;
+		background-color: #FF6347;
 	}
 </style>
